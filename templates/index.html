@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Unit Converter</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+        let currentType = "length";
+
+        function updateUnits(type) {
+            currentType = type;
+            document.getElementById("conversion_type").value = type;
+
+            let fromSelect = document.getElementById("from_unit");
+            let toSelect = document.getElementById("to_unit");
+
+            let units = {
+                length: ["millimeter", "centimeter", "meter", "kilometer", "inch", "foot", "yard", "mile"],
+                weight: ["milligram", "gram", "kilogram", "ounce", "pound"],
+                temperature: ["celsius", "fahrenheit", "kelvin"]
+            };
+
+            fromSelect.innerHTML = "";
+            toSelect.innerHTML = "";
+
+            units[type].forEach(unit => {
+                let option1 = document.createElement("option");
+                option1.value = unit;
+                option1.text = unit;
+                fromSelect.add(option1);
+
+                let option2 = document.createElement("option");
+                option2.value = unit;
+                option2.text = unit;
+                toSelect.add(option2);
+            });
+
+            document.querySelectorAll(".type-link").forEach(link => link.classList.remove("active"));
+            document.getElementById(type + "-link").classList.add("active");
+        }
+
+        function resetForm() {
+            document.getElementById("converterForm").reset();
+            document.getElementById("resultBox").innerHTML = "";
+            updateUnits("length");
+        }
+    </script>
+</head>
+<body onload="updateUnits('length')">
+    <h1>Unit Converter</h1>
+
+    <div class="container">
+        <!-- Left: Form -->
+        <div class="form-box">
+            <div class="type-selector">
+                <a href="#" id="length-link" class="type-link active" onclick="updateUnits('length'); return false;">Length</a>
+                <a href="#" id="weight-link" class="type-link" onclick="updateUnits('weight'); return false;">Weight</a>
+                <a href="#" id="temperature-link" class="type-link" onclick="updateUnits('temperature'); return false;">Temperature</a>
+            </div>
+
+            <form id="converterForm" method="POST">
+                <input type="hidden" name="conversion_type" id="conversion_type" value="length">
+
+                <label>Enter Value:</label>
+                <input type="number" step="any" name="value" required>
+
+                <label>From Unit:</label>
+                <select name="from_unit" id="from_unit"></select>
+
+                <label>To Unit:</label>
+                <select name="to_unit" id="to_unit"></select>
+
+                <button type="submit">Convert</button>
+            </form>
+        </div>
+
+        <!-- Right: Result -->
+        <div class="result-box">
+            {% if result %}
+                <h2 id="resultBox">{{ result }}</h2>
+                <button class="reset-btn" onclick="resetForm()">Reset</button>
+            {% else %}
+                <h2 id="resultBox"></h2>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

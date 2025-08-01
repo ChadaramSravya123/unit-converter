@@ -1,0 +1,114 @@
+/* General page styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background: #f3f4f6;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+/* Two-column layout: form on left, result on right */
+.container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Left box (form) */
+.form-box {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    border: 2px solid #333;
+    width: 300px;
+    text-align: left;
+}
+
+/* Right box (result) */
+.result-box {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    border: 2px solid #333;
+    width: 300px;
+    min-height: 150px;
+}
+
+/* Hyperlink type selector */
+.type-selector {
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.type-link {
+    margin: 0 8px;
+    text-decoration: none;
+    color: #007BFF;
+    font-weight: bold;
+}
+
+.type-link:hover {
+    text-decoration: underline;
+}
+
+.type-link.active {
+    color: #4CAF50;
+    text-decoration: underline;
+}
+
+/* Form labels and inputs */
+label {
+    font-weight: bold;
+    display: block;
+    margin-top: 10px;
+}
+
+input, select {
+    width: 100%;
+    padding: 6px;
+    margin-top: 4px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Convert button */
+button[type="submit"] {
+    margin-top: 12px;
+    padding: 8px;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    background: #4CAF50;
+    color: white;
+    font-weight: bold;
+}
+
+button[type="submit"]:hover {
+    opacity: 0.9;
+}
+
+/* Reset button in result box */
+.reset-btn {
+    background: #f44336;
+    color: white;
+    padding: 8px;
+    border: none;
+    margin-top: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.reset-btn:hover {
+    opacity: 0.9;
+}
+
+/* Result text */
+.result-box h2 {
+    color: #333;
+}
